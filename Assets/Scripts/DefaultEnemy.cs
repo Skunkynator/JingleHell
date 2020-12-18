@@ -6,13 +6,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public class DefaultEnemy : Enemy
 {
-    private Rigidbody2D rb;
-    private Collider2D myCollider;
     [SerializeField]
     private LayerMask mask;
-    private Vector2 moveDir = Vector2.zero;
     [SerializeField]
     private float moveSpeed = 2;
+
+    private Collider2D myCollider;
+    private Rigidbody2D rb;
+    private Vector2 moveDir = Vector2.zero;
+    
     UnityAction updateMovement;
     // Start is called before the first frame update
     void Start()
