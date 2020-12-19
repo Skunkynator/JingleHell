@@ -119,13 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f6938e077837e2eaa183ae22266e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  speed: 4
+  health: 100
+  speed: 8
   charBullet: {fileID: 4823603039672126357, guid: 85076255ea1a35e4999c96d120e28993,
     type: 3}
   cooldownDefault: 0.2
-  gameMaster: {fileID: 0}
   firingPoint: {fileID: 4460207622042113485}
+  healthbar: {fileID: 0}
 --- !u!70 &329800285129307347
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

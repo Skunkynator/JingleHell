@@ -100,7 +100,7 @@ MonoBehaviour:
   health: 100
   mask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
   moveSpeed: 2
   shotsPerSecond: 1
   enemyBullet: {fileID: 3519302290705406126, guid: 8861a8d43f72e5a61970d496d5465ae5,
