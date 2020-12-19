@@ -51,7 +51,8 @@ public class DefaultEnemy : Enemy
     void AttackPlayer()
     {
         if(attackCooldown > 0) return;
-        Instantiate(enemyBullet).init(playerPos - transform.position, true, transform.position);
+        Vector3 direction = playerPos - transform.position;
+        Instantiate(enemyBullet).init(direction, true, transform.position + direction.normalized * 0.3f);
         attackCooldown = 1 / shotsPerSecond;
     }
     void checkMovement()
