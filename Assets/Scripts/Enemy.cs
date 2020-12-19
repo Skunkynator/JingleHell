@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    protected override void Die(){
+    protected override void Die() {
         Destroy(gameObject);
     }
 }

@@ -11,21 +11,24 @@ public class CharacterController : Entity
     Bullet charBullet;
     [SerializeField]
     float cooldownDefault = 0;
-    float cooldown = 0;
-    [SerializeField]
-    GameMasterScript gameMaster;
     [SerializeField]
     Rigidbody2D firingPoint;
+    [SerializeField]
+    Healthbar healthbar;
+    float cooldown = 0;
+    GameMasterScript gameMaster;
 
     Rigidbody2D rb;
     public static CharacterController instance;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         instance = this;
+        healthbar.SetMaxHealt(health);
         rb = GetComponent<Rigidbody2D>();
+        gameMaster = GameMasterScript.instance;
     }
 
     // Update is called once per frame
@@ -60,7 +63,13 @@ public class CharacterController : Entity
 		}
     }
 
-    override protected void Die()
+    public override void TakeDamage(float damage)
+	{
+        base.TakeDamage(damage);
+        healthbar.SetHealth(health);
+	}
+
+    protected override void Die()
 	{
         gameMaster.GameOver();
 	}

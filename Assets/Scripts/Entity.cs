@@ -5,7 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    float health;
+    protected float health;
 
     // Start is called before the first frame update
     void Start()
@@ -19,11 +19,11 @@ public class Entity : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
-	{
+	    {
             Die();
         }
     }

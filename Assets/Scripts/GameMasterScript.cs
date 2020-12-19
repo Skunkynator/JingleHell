@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameMasterScript : MonoBehaviour
 {
+	public static GameMasterScript instance;
+
 	[SerializeField]
 	GameObject player;
 	[SerializeField]
@@ -12,21 +14,27 @@ public class GameMasterScript : MonoBehaviour
 
 	void Awake()
 	{
-
+		instance = this;
+		//gameOverUI = GameObject.FindGameObjectWithTag("GameOverUI");
 		Time.timeScale = 1;
 	}
 
 	public void GameOver()
 	{
 		Debug.Log("Game Over");
-		gameOverUI.SetActive(true);
+		if(gameOverUI != null)
+		{
+			gameOverUI.SetActive(true);
+		}
+		else
+		{
+			print("NO");
+		}
 		Time.timeScale = 0;
-		Destroy(player);
 	}
 	
 	public void ReloadCurrentLevel()
 	{
-		Time.timeScale = 1;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
