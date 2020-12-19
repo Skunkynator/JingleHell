@@ -17,6 +17,24 @@ TextureImporter:
   - first:
       213: -4086855057050611598
     second: nothPole-tileset_4
+  - first:
+      213: 1328169786792145690
+    second: nothPole-tileset_0
+  - first:
+      213: 4899808462016720789
+    second: nothPole-tileset_1
+  - first:
+      213: 5539936580663744171
+    second: nothPole-tileset_2
+  - first:
+      213: 1073438060587459455
+    second: nothPole-tileset_3
+  - first:
+      213: -6571084705403229640
+    second: nothPole-tileset_4
+  - first:
+      213: 6899031557226230442
+    second: nothPole-tileset_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,14 +128,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71cf88c5195433730800000000000000
-      internalID: 3977599386523335703
+      spriteID: a13f627526b9e6210800000000000000
+      internalID: 1328169786792145690
       vertices: []
       indices: 
       edges: []
@@ -131,14 +149,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55046b0e2d4544da0800000000000000
-      internalID: -5961546742041788331
+      spriteID: 59fa5fdf5dd9ff340800000000000000
+      internalID: 4899808462016720789
       vertices: []
       indices: 
       edges: []
@@ -152,14 +170,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2ff216e3c055bff0800000000000000
-      internalID: -21021820944449747
+      spriteID: ba697a0e7fec1ec40800000000000000
+      internalID: 5539936580663744171
       vertices: []
       indices: 
       edges: []
@@ -173,35 +191,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d24144d45ff50880800000000000000
-      internalID: -8645223169864416557
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: nothPole-tileset_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2705dfb8af29847c0800000000000000
-      internalID: -4086855057050611598
+      spriteID: f7323b19a3e95ee00800000000000000
+      internalID: 1073438060587459455
       vertices: []
       indices: 
       edges: []
