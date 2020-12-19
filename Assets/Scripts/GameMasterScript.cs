@@ -1,52 +1,23 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class GameMasterScript : MonoBehaviour
 {
 	[SerializeField]
 	GameObject player;
-	[SerializeField]
 	CharacterController playerCharacterController;
-	[SerializeField]
-	GameObject gameOverUI;
+
 
 	void Awake()
 	{
-
-		Time.timeScale = 1;
+		playerCharacterController = player.GetComponent<CharacterController>();
 	}
 
-	public void GameOver()
+	public void gameOver()
 	{
 		Debug.Log("Game Over");
-		gameOverUI.SetActive(true);
 		Time.timeScale = 0;
 		Destroy(player);
-	}
-	
-	public void ReloadCurrentLevel()
-	{
-		Time.timeScale = 1;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	}
-
-	public void LoadLevel(int buildIndex)
-	{
-		SceneManager.LoadScene(buildIndex);
-	}
-
-	public void LoadMainMenu()
-	{
-		SceneManager.LoadScene("MainMenu");
-	}
-
-	public void TogglePauseGame()
-	{
-
-	}
-
-	public void QuitGame()
-	{
-		Application.Quit();
 	}
 }

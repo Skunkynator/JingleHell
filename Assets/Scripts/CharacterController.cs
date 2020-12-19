@@ -44,6 +44,6 @@ public class CharacterController : Entity
 
     override protected void Die()
 	{
-        gameMaster.GameOver();
+        gameMaster.gameOver();
 	}
 }
