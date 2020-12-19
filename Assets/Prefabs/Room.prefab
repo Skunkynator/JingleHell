@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617356527931342232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8518796640293590826}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4086401118472865757}
   - component: {fileID: 4086401118472865756}
   - component: {fileID: 4086401118472865759}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Midground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
