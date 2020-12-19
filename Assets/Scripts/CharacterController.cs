@@ -18,6 +18,9 @@ public class CharacterController : Entity
     float cooldown = 0;
     [SerializeField]
     GameMasterScript gameMaster;
+    
+    [SerializeField]
+    float maxHealth;
 
 
     bool spiderGemCollected = false;
@@ -31,7 +34,8 @@ public class CharacterController : Entity
     void Awake()
     {
         instance = this;
-        healthbar.SetMaxHealt(health);
+        health = maxHealth;
+        healthbar.SetMaxHealt(maxHealth);
         rb = GetComponent<Rigidbody2D>();
         gameMaster = GameMasterScript.instance;
     }
@@ -43,7 +47,7 @@ public class CharacterController : Entity
         float vControl = Input.GetAxis("Vertical");
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        
+
         rb.position += new Vector2(hControl, vControl) * Time.deltaTime * speed;
         firingPoint.rotation = angle;
         firingPoint.position = rb.position;
@@ -55,27 +59,28 @@ public class CharacterController : Entity
 
     void shootBullet(Vector3 direction, float angle)
     {
-        if(cooldown <= 0)
-		{
+        if (cooldown <= 0)
+        {
             Debug.Log(direction.normalized);
 
             Instantiate(charBullet).init(direction, firingPoint.transform.position + direction.normalized, angle);
             cooldown = cooldownDefault;
-		}
+        }
         else
-		{
+        {
             cooldown -= Time.deltaTime;
-		}
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collsion)
-	{
+    {
+
         if (collsion.gameObject.tag == "SpiderGem" ||
             collsion.gameObject.tag == "GostGem" ||
             collsion.gameObject.tag == "GoblinGem")
         {
             switch (collsion.gameObject.tag)
-			{
+            {
                 case "SpiderGem":
                     spiderGemCollected = true;
                     break;
@@ -90,16 +95,29 @@ public class CharacterController : Entity
             Debug.Log(collsion.contacts.ToString());
             Destroy(collsion.collider.gameObject);
         }
+    }
 
+    public void PickUpHealthpack(GameObject healthpickup)
+    {
+        if (health >= maxHealth) { return; }
+
+        health += Mathf.Clamp(healthpickup.GetComponent<Healthpickup>().restoreHealth, 0, maxHealth - health);
+        healthbar.SetHealth(health);
+        Destroy(healthpickup);
     }
 
     public override void TakeDamage(float damage)
-	{
-        base.TakeDamage(damage);
+    {
+        print("Hit");
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
         healthbar.SetHealth(health);
-	}
+    }
 
-    protected override void Die()
+    protected void Die()
 	{
         gameMaster.GameOver();
 	}
