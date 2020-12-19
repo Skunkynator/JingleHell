@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7604925694083043760}
   - component: {fileID: 7604925694083043759}
+  - component: {fileID: 4500805066172245775}
+  - component: {fileID: 3118046420667146035}
   m_Layer: 0
   m_Name: MiniBoss Goblin
   m_TagString: Untagged
@@ -82,3 +84,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4500805066172245775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604925694083043758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3268bbe5a62170a4eb13f78e6398a591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3000
+--- !u!70 &3118046420667146035
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604925694083043758}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.75, y: 0.9}
+  m_Direction: 0

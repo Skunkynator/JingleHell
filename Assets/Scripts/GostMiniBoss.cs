@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : Entity
+public class GostMiniBoss : Entity
 {
     // Start is called before the first frame update
     void Start()
