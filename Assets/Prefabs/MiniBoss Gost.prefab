@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6429907263514409025}
   - component: {fileID: -9168321923901865489}
   - component: {fileID: 1162525299601403093}
-  m_Layer: 0
+  - component: {fileID: 3877793949073111121}
+  m_Layer: 14
   m_Name: MiniBoss Gost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe2d688934f3bb4d855d92facb4eed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3000
+  health: 2000
+  drop: {fileID: 0}
 --- !u!70 &1162525299601403093
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,3 +115,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.85}
   m_Direction: 0
+--- !u!50 &3877793949073111121
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429907263514409024}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

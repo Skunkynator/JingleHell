@@ -5,6 +5,10 @@ using UnityEngine;
 public class GostMiniBoss : Entity
 {
     // Start is called before the first frame update
+
+    [SerializeField]
+    GameObject drop;
+
     void Start()
     {
         
@@ -14,5 +18,10 @@ public class GostMiniBoss : Entity
     void Update()
     {
         
+    }
+    protected override void Die()
+    {
+        Instantiate(drop);
+        base.Die();
     }
 }

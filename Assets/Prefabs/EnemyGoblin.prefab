@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6854054810308309730}
   - component: {fileID: 6854054810308309733}
   m_Layer: 13
-  m_Name: Enemy
+  m_Name: EnemyGoblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1f20a00b5039bd0b58521d08893b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
+  collisionAttackCooldownDefault: 0.5
   mask:
     serializedVersion: 2
     m_Bits: 512
@@ -117,7 +118,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

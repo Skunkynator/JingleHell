@@ -17,6 +17,7 @@ public class EnemyGost : Enemy
     void Awake()
 	{
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
