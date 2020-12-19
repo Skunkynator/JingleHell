@@ -22,6 +22,8 @@ public class Room : MonoBehaviour
     RoomTrigger triggerDown;
     [SerializeField]
     Transform cameraPosition;
+    [SerializeField]
+    GameObject enemies;
 
     public Transform CameraPosition => cameraPosition;
 
@@ -31,5 +33,18 @@ public class Room : MonoBehaviour
         triggerTop?.setRoom(top);
         triggerDown?.setRoom(down);
         triggerRight?.setRoom(right);
+        triggerLeft.OnEnter += onExit;
+        triggerTop.OnEnter += onExit;
+        triggerDown.OnEnter += onExit;
+        triggerRight.OnEnter += onExit;
+    }
+
+    void onExit()
+    {
+        enemies.SetActive(false);
+    }
+    public void onEnter()
+    {
+        enemies.SetActive(true);
     }
 }

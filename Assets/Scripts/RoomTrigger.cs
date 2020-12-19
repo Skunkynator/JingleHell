@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomTrigger : MonoBehaviour
 {
     private Room room;
+    public UnityAction OnEnter;
     void Start()
     {
         
@@ -21,6 +23,8 @@ public class RoomTrigger : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        CameraController.instance.currentPos = room.CameraPosition.position;        
+        CameraController.instance.currentPos = room.CameraPosition.position;
+        OnEnter?.Invoke();
+        room?.onEnter();
     }
 }
