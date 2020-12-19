@@ -52,7 +52,7 @@ public class DefaultEnemy : Enemy
     {
         if(attackCooldown > 0) return;
         Vector3 direction = playerPos - transform.position;
-        Instantiate(enemyBullet).init(direction, true, transform.position + direction.normalized * 0.3f);
+        Instantiate(enemyBullet).init(direction, transform.position + direction.normalized * 0.3f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 45f);
         attackCooldown = 1 / shotsPerSecond;
     }
     void checkMovement()

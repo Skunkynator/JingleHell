@@ -5,17 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : Entity
 {
-    public static CharacterController instance;
     [SerializeField]
     float speed = 4;
-    Rigidbody2D rb;
     [SerializeField]
     Bullet charBullet;
     [SerializeField]
-    float bulletsPS = 2;
+    float cooldownDefault = 0;
     float cooldown = 0;
     [SerializeField]
     GameMasterScript gameMaster;
+    [SerializeField]
+    Rigidbody2D firingPoint;
+
+    Rigidbody2D rb;
+    public static CharacterController instance;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +33,31 @@ public class CharacterController : Entity
     {
         float hControl = Input.GetAxis("Horizontal");
         float vControl = Input.GetAxis("Vertical");
+        Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        
         rb.position += new Vector2(hControl, vControl) * Time.deltaTime * speed;
-        if(Input.GetKey(KeyCode.Space) && cooldown <= 0)
-            shootBullet();
+        firingPoint.rotation = angle;
+        firingPoint.position = rb.position;
+
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && cooldown <= 0)
+            shootBullet(direction, angle);
         cooldown -= Time.deltaTime;
     }
 
-    void shootBullet()
+    void shootBullet(Vector3 direction, float angle)
     {
-        Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Instantiate(charBullet).init(direction, false, transform.position + direction.normalized);
-        cooldown = 1/bulletsPS;
+        if(cooldown <= 0)
+		{
+            Debug.Log(direction.normalized);
+
+            Instantiate(charBullet).init(direction, firingPoint.transform.position + direction.normalized, angle);
+            cooldown = cooldownDefault;
+		}
+        else
+		{
+            cooldown -= Time.deltaTime;
+		}
     }
 
     override protected void Die()
