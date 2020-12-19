@@ -27,6 +27,11 @@ public class Room : MonoBehaviour
 
     public Transform CameraPosition => cameraPosition;
 
+    void Awake()
+	{
+        enemies.SetActive(false);
+	}
+
     void Start()
     {
         triggerLeft?.setRoom(left);
