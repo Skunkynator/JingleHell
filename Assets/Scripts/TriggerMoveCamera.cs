@@ -5,16 +5,18 @@ using UnityEngine;
 public class TriggerMoveCamera : MonoBehaviour
 {
 	// Start is called before the first frame update
-	public Camera camera;
-	public Transform cameraTargetPosition;
+    [SerializeField]
+    private CameraController camera;
+    [SerializeField]
+    private Transform cameraTargetPosition;
 
-	void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+	Debug.Log(collider.gameObject.tag);
+	if (collider.gameObject.tag == "Player")
 	{
-		Debug.Log(collider.gameObject.tag);
-		if (collider.gameObject.tag == "Player")
-		{
-			camera.transform.position = cameraTargetPosition.position;
-		}
+	    camera.currentPos = cameraTargetPosition.position;
 	}
+    }
 	
 }
