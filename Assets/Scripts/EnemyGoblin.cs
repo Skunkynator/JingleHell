@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class DefaultEnemy : Enemy
+public class EnemyGoblin : Enemy
 {
     [SerializeField]
     private LayerMask mask;

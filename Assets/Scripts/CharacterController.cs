@@ -61,8 +61,6 @@ public class CharacterController : Entity
     {
         if (cooldown <= 0)
         {
-            Debug.Log(direction.normalized);
-
             Instantiate(charBullet).init(direction, firingPoint.transform.position + direction.normalized, angle);
             cooldown = cooldownDefault;
         }
