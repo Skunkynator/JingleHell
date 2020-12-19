@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-
     [SerializeField]
     float health;
 
@@ -20,17 +19,17 @@ public class Entity : MonoBehaviour
         
     }
 
-    void TakeDamage(float damage)
-	{
+    public void TakeDamage(float damage)
+    {
         health -= damage;
         if (health < 0)
-		{
+	{
             Die();
-		}
-	}
+        }
+    }
 
-   void Die()
-   {
-
-	}
+    void Die()
+    {
+        Destroy(gameObject);  
+    }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
+    float Damage = 25;
     bool initialised = false;
     Vector2 direction;
     bool enemyBullet;
@@ -27,6 +29,16 @@ public class Bullet : MonoBehaviour
         this.direction = direction.normalized;
         this.enemyBullet = enemyBullet;
         transform.position = position;
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Entity entity = collision.collider.GetComponent<Entity>();
+        if(entity != null)
+        {
+            entity.TakeDamage(Damage);
+        }
+        Destroy(this.gameObject);
     }
 
 }
