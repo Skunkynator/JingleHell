@@ -38,7 +38,7 @@ public class CharacterController : Entity
     void shootBullet()
     {
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        Instantiate(charBullet).init(direction, false, transform.position);
+        Instantiate(charBullet).init(direction, false, transform.position + direction.normalized);
         cooldown = 1/bulletsPS;
     }
 
