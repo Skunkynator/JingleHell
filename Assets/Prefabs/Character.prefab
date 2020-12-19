@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1097710738528268180}
   - component: {fileID: 1097710738528268177}
   - component: {fileID: 1097710738528268176}
-  - component: {fileID: 1733211524376743284}
+  - component: {fileID: 4823834718577689102}
   m_Layer: 12
   m_Name: Character
   m_TagString: Player
@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5000d9b03e39c0d999ad10da3c85f7c1, type: 3}
+  m_Sprite: {fileID: -3973664656044319341, guid: 9253b7589a5d7e44891beacc0ae483bb,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &1733211524376743284
+--- !u!114 &4823834718577689102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,11 +141,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1097710738528268181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b107084cfb7e4c747b975e613cff85be, type: 3}
+  m_Script: {fileID: 11500000, guid: d1f6938e077837e2eaa183ae22266e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  speed: 8
-  charBullet: {fileID: 0}
+  speed: 4
+  charBullet: {fileID: 4823603039672126357, guid: 85076255ea1a35e4999c96d120e28993,
+    type: 3}
   bulletsPS: 2
   gameMaster: {fileID: 0}
