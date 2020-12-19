@@ -22,14 +22,14 @@ public class Entity : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        if (health < 0)
+        if (health <= 0)
 	{
             Die();
         }
     }
 
-    void Die()
+    protected virtual void Die()
     {
-        Destroy(gameObject);  
+        Destroy(gameObject);
     }
 }

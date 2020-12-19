@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController : MonoBehaviour
+public class CharacterController : Entity
 {
     public static CharacterController instance;
     [SerializeField]
@@ -14,6 +14,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     float bulletsPS = 2;
     float cooldown = 0;
+    [SerializeField]
+    GameMasterScript gameMaster;
 
     // Start is called before the first frame update
     void Start()
@@ -39,4 +41,9 @@ public class CharacterController : MonoBehaviour
         Instantiate(charBullet).init(direction, false, transform.position);
         cooldown = 1/bulletsPS;
     }
+
+    override protected void Die()
+	{
+        gameMaster.gameOver();
+	}
 }
