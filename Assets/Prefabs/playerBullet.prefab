@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599aa98a390d3be45b82738cd0f7b388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1000
+  Damage: 10
   tagShooter: Player
   speed: 4
   rbBullet: {fileID: 6537189724451632404}

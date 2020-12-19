@@ -16,6 +16,7 @@ public class CharacterController : Entity
     [SerializeField]
     Healthbar healthbar;
     float cooldown = 0;
+    [SerializeField]
     GameMasterScript gameMaster;
 
 
