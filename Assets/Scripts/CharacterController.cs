@@ -18,6 +18,10 @@ public class CharacterController : Entity
     float cooldown = 0;
     GameMasterScript gameMaster;
 
+
+    bool spiderGemCollected = false;
+    bool gostGemCollected = false;
+    bool goblinGemCollected = false;
     Rigidbody2D rb;
     public static CharacterController instance;
 
@@ -61,6 +65,31 @@ public class CharacterController : Entity
 		{
             cooldown -= Time.deltaTime;
 		}
+    }
+
+    void OnCollisionEnter2D(Collision2D collsion)
+	{
+        if (collsion.gameObject.tag == "SpiderGem" ||
+            collsion.gameObject.tag == "GostGem" ||
+            collsion.gameObject.tag == "GoblinGem")
+        {
+            switch (collsion.gameObject.tag)
+			{
+                case "SpiderGem":
+                    spiderGemCollected = true;
+                    break;
+                case "GostGem":
+                    gostGemCollected = true;
+                    break;
+                case "GoblinGem":
+                    goblinGemCollected = true;
+                    break;
+            }
+
+            Debug.Log(collsion.contacts.ToString());
+            Destroy(collsion.collider.gameObject);
+        }
+
     }
 
     public override void TakeDamage(float damage)
