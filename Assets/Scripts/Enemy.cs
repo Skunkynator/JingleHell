@@ -12,7 +12,8 @@ public class Enemy : Entity
         Destroy(gameObject);
         if (CharacterController.instance.health <= CharacterController.instance.maxHealth * 0.5 &&
             GameObject.FindGameObjectsWithTag("Healthpickup").Length < 2)
-            Instantiate(healthpickup, this.transform.position, Quaternion.identity);
+            Instantiate(healthpickup, this.transform.position, Quaternion.identity, this.transform.parent);
+            //Instantiate(healthpickup, this.transform.position, Quaternion.identity);
         Room.Current.checkEnemies();
     }
 }
