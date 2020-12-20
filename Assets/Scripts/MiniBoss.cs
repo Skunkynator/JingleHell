@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderMiniBoss : MiniBoss
+public class MiniBoss : Enemy
 {
     // Start is called before the first frame update
-
-
+    [SerializeField]
+    GameObject drop;
     void Start()
     {
         
@@ -17,5 +17,9 @@ public class SpiderMiniBoss : MiniBoss
     {
         
     }
-
+    protected override void Die()
+    {
+        Instantiate(drop);
+	base.Die();
+    }
 }

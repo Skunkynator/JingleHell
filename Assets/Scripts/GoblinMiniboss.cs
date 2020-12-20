@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoblinMiniboss : Entity
+public class GoblinMiniboss : MiniBoss
 {
-    // Start is called before the first frame update
-    [SerializeField]
-    GameObject drop;
-
     void Start()
     {
 
@@ -17,11 +13,5 @@ public class GoblinMiniboss : Entity
     void Update()
     {
         
-    }
-
-    protected override void Die()
-    {
-        Instantiate(drop);
-        base.Die();
     }
 }
