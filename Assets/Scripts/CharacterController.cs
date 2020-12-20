@@ -26,6 +26,7 @@ public class CharacterController : Entity
     bool spiderGemCollected = false;
     bool gostGemCollected = false;
     bool goblinGemCollected = false;
+    bool pausePressed = false;
     Rigidbody2D rb;
     public static CharacterController instance;
 
@@ -48,6 +49,16 @@ public class CharacterController : Entity
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
+        if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) && !pausePressed)
+		{
+            gameMaster.TogglePauseMenu();
+            pausePressed = true;
+        }
+        if (Input.GetKeyUp(KeyCode.P) || Input.GetKeyUp(KeyCode.Escape))
+        {
+            pausePressed = false;
+        }
+
         rb.position += new Vector2(hControl, vControl) * Time.deltaTime * speed;
         firingPoint.rotation = angle;
         firingPoint.position = rb.position;
@@ -68,6 +79,15 @@ public class CharacterController : Entity
         {
             cooldown -= Time.deltaTime;
         }
+    }
+
+    public void PickUpHealthpack(GameObject healthpickup)
+    {
+        if (health >= maxHealth) { return; }
+
+        health += Mathf.Clamp(healthpickup.GetComponent<Healthpickup>().restoreHealth, 0, maxHealth - health);
+        healthbar.SetHealth(health);
+        Destroy(healthpickup);
     }
 
     void OnCollisionEnter2D(Collision2D collsion)
@@ -95,15 +115,6 @@ public class CharacterController : Entity
         }
     }
 
-    public void PickUpHealthpack(GameObject healthpickup)
-    {
-        if (health >= maxHealth) { return; }
-
-        health += Mathf.Clamp(healthpickup.GetComponent<Healthpickup>().restoreHealth, 0, maxHealth - health);
-        healthbar.SetHealth(health);
-        Destroy(healthpickup);
-    }
-
     public override void TakeDamage(float damage)
     {
         print("Hit");
@@ -115,7 +126,7 @@ public class CharacterController : Entity
         healthbar.SetHealth(health);
     }
 
-    protected void Die()
+    protected override void Die()
 	{
         gameMaster.GameOver();
 	}

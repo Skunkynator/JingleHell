@@ -10,7 +10,13 @@ public class GameMasterScript : MonoBehaviour
 	[SerializeField]
 	CharacterController playerCharacterController;
 	[SerializeField]
+	GameObject currentRoom;
+	[SerializeField]
 	GameObject gameOverUI;
+	[SerializeField]
+	GameObject pauseMenuUI;
+
+	bool paused = false;
 
 	void Awake()
 	{
@@ -48,9 +54,19 @@ public class GameMasterScript : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 
-	public void TogglePauseGame()
+	public void TogglePauseMenu()
 	{
-
+		if (!paused)
+		{
+			Time.timeScale = 0;
+			pauseMenuUI.SetActive(true);
+			paused = true;
+		}
+		else {
+			pauseMenuUI.SetActive(false);
+			Time.timeScale = 1;
+			paused = false;
+		}
 	}
 
 	public void QuitGame()
