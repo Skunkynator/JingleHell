@@ -98,7 +98,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2000
+  healthpickup: {fileID: 0}
+  touchDamage: 0
+  touchDamageCooldownDefault: 1
   drop: {fileID: 3160614812818153467, guid: e489947ef4cbeff41bb39e52e12ae1a0, type: 3}
+  attackSpeed: 2
+  moveSpeed: 1.5
+  bulletAmound: 10
+  startAngle: -90
+  endAngle: 90
+  bullet: {fileID: 6529959859233412192, guid: 73e12811ab915124d8b36cf02c625cc3, type: 3}
 --- !u!58 &9048495543479885222
 CircleCollider2D:
   m_ObjectHideFlags: 0

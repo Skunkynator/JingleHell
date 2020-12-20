@@ -53,13 +53,11 @@ public class EnemySpider : Enemy
 
         for (int i = (bulletAmound / 2) * -1; i <= (bulletAmound / 2); i++)
 		{
-            print("peww");
             Vector2 bulletDirection = Quaternion.Euler(0, 0, angleStep * i) * toPlayer;
             Instantiate(bullet).init(bulletDirection, this.transform.position, Random.value * 180f);
             
         }
 	}
-
 
     void Move()
     {
