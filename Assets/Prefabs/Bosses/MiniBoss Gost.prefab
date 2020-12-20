@@ -102,10 +102,10 @@ MonoBehaviour:
   touchDamage: 0
   touchDamageCooldownDefault: 1
   drop: {fileID: 0}
-  bullet: {fileID: 0}
+  bullet: {fileID: 2421316998928053384, guid: 798ea812ee1a06295adc94a25ae5dc47, type: 3}
   timeOffset: 0.3
   bulletAmount: 4
-  spreadAngle: 10
+  spreadAngle: 20
 --- !u!70 &1162525299601403093
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

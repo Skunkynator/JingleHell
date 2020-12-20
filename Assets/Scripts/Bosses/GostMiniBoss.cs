@@ -27,7 +27,7 @@ public class GostMiniBoss : MiniBoss
 
         while(true)
         {
-            currentAttack = BulletPatterns.timedSpread(bullet, bulletAmount, spreadAngle, transform.position, 0.5f, timeOffset);
+            currentAttack = BulletPatterns.timedSpread(bullet, bulletAmount, spreadAngle, transform, 0.5f, timeOffset);
             StartCoroutine(currentAttack);
             yield return new WaitForSeconds(timeOffset * (bulletAmount * 2 - 1));
         }
