@@ -24,12 +24,12 @@ public class CharacterController : Entity
     Vector2 movement;
     
     [SerializeField]
-    float maxHealth;
+    internal float maxHealth;
 
 
-    bool spiderGemCollected = false;
-    bool gostGemCollected = false;
-    bool goblinGemCollected = false;
+    internal bool spiderGemCollected = false;
+    internal bool gostGemCollected = false;
+    internal bool goblinGemCollected = false;
     bool pausePressed = false;
     Rigidbody2D rb;
     public static CharacterController instance;
@@ -88,7 +88,7 @@ public class CharacterController : Entity
         firingPoint.rotation = angle;
         firingPoint.position = rb.position;
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && cooldown <= 0)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0)) && cooldown <= 0 && !gameMaster.paused)
             shootBullet(direction, angle);
         cooldown -= Time.deltaTime;
     }

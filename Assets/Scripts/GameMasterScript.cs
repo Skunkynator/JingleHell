@@ -16,7 +16,7 @@ public class GameMasterScript : MonoBehaviour
 	[SerializeField]
 	GameObject pauseMenuUI;
 
-	bool paused = false;
+	internal bool paused = false;
 
 	void Awake()
 	{
@@ -67,6 +67,13 @@ public class GameMasterScript : MonoBehaviour
 			Time.timeScale = 1;
 			paused = false;
 		}
+	}
+
+	public void ClosePauseMenu()
+	{
+		pauseMenuUI.SetActive(false);
+		Time.timeScale = 1;
+		paused = false;
 	}
 
 	public void QuitGame()

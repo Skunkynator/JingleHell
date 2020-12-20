@@ -114,7 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 30
-  collisionAttackCooldownDefault: 0.5
+  healthpickup: {fileID: 3656097865096971536, guid: 520bac9ad810c8c4598c1d407f2bda3a,
+    type: 3}
   moveSpeed: 1
   attackCooldownDefault: 1
   player: {fileID: 0}
