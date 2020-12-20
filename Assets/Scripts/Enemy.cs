@@ -13,6 +13,6 @@ public class Enemy : Entity
         if (CharacterController.instance.health <= CharacterController.instance.maxHealth * 0.5 &&
             GameObject.FindGameObjectsWithTag("Healthpickup").Length < 2)
             Instantiate(healthpickup, this.transform.position, Quaternion.identity);
-        Room.Current.toggleDoorsIf();
+        Room.Current.checkEnemies();
     }
 }
