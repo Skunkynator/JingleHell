@@ -17,8 +17,7 @@ public class CharacterController : Entity
     [SerializeField]
     Healthbar healthbar;
     float cooldown = 0;
-    [SerializeField]
-    GameMasterScript gameMaster;
+    GameMasterScript gameMaster => GameMasterScript.instance;
 
     UnityAction updateMovementVector;
     Vector2 movement;
@@ -56,7 +55,6 @@ public class CharacterController : Entity
         health = maxHealth;
         healthbar.SetMaxHealt(maxHealth);
         rb = GetComponent<Rigidbody2D>();
-        gameMaster = GameMasterScript.instance;
         updateMovementVector += checkMoveInput;
     }
 
