@@ -93,12 +93,16 @@ public class EnemyGoblin : Enemy
         updateMovement += checkMovement;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionStay2D(Collision2D collision)
     {
+        base.OnCollisionStay2D(collision);
+
         if(myCollider.IsTouchingLayers(mask))
         {
             Vector2 normal = collision.GetContact(0).normal;
             moveDir = Vector2.Reflect(moveDir,normal) - moveDir * normal * 0.2f;
         }
+
+        
     }
 }

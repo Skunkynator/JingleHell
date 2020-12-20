@@ -147,6 +147,8 @@ MonoBehaviour:
   health: 50
   healthpickup: {fileID: 3656097865096971536, guid: 520bac9ad810c8c4598c1d407f2bda3a,
     type: 3}
+  touchDamage: 20
+  touchDamageCooldownDefault: 1
   mask:
     serializedVersion: 2
     m_Bits: 16
