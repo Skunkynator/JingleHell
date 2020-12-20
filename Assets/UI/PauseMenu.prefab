@@ -121,7 +121,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 107956638165229107, guid: b15255484f3f1b249a083375facdafc0,
           type: 3}
-        m_MethodName: ReloadCurrentLevel
+        m_MethodName: ClosePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

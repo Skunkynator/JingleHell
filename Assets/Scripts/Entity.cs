@@ -5,7 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     [SerializeField]
-    protected float health;
+    internal float health;
 
     public virtual void TakeDamage(float damage)
     {

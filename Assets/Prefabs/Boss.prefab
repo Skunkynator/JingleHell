@@ -118,7 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf47cf13970bf04089e5496d625cf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5000
+  health: 3000
+  healthpickup: {fileID: 3656097865096971536, guid: 520bac9ad810c8c4598c1d407f2bda3a,
+    type: 3}
+  moveSpeed: 1.5
+  baseDamage: 15
+  attackCooldown: 0.5
 --- !u!70 &4459975584555817900
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
