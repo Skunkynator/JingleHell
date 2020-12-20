@@ -100,10 +100,14 @@ MonoBehaviour:
   health: 20
   healthpickup: {fileID: 3656097865096971536, guid: 520bac9ad810c8c4598c1d407f2bda3a,
     type: 3}
+  touchDamage: 0
+  touchDamageCooldownDefault: 1
+  attackSpeed: 2
+  moveSpeed: 1
   bulletAmound: 2
-  startAngle: 110
-  endAngle: 250
-  bullet: {fileID: 3519302290705406126, guid: 8861a8d43f72e5a61970d496d5465ae5, type: 3}
+  startAngle: -22.5
+  endAngle: 22.5
+  bullet: {fileID: 6529959859233412192, guid: f57c0e066b827a542b9b3de8e2b51020, type: 3}
 --- !u!58 &8782994423128949324
 CircleCollider2D:
   m_ObjectHideFlags: 0

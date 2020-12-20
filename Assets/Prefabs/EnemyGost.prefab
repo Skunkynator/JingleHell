@@ -116,8 +116,9 @@ MonoBehaviour:
   health: 30
   healthpickup: {fileID: 3656097865096971536, guid: 520bac9ad810c8c4598c1d407f2bda3a,
     type: 3}
+  touchDamage: 25
+  touchDamageCooldownDefault: 1
   moveSpeed: 1
-  attackCooldownDefault: 1
   player: {fileID: 0}
 --- !u!50 &446757458584731544
 Rigidbody2D:

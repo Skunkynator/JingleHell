@@ -33,11 +33,11 @@ public class Bullet : MonoBehaviour
 		transform.position += (Vector3)direction * Time.deltaTime * speed;
 	}
 
-	public void init(Vector2 direction, Vector2 position, float angle)
+	public void init(Vector2 direction, Vector2 position, float rotation)
 	{
 		if (initialised) return;
 		initialised = !initialised;
-		rbBullet.rotation = angle;
+		rbBullet.rotation = rotation;
 		this.direction = direction.normalized;
 		transform.position = position;
 	}
