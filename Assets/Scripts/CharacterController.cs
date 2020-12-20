@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : Entity
@@ -18,6 +19,9 @@ public class CharacterController : Entity
     float cooldown = 0;
     [SerializeField]
     GameMasterScript gameMaster;
+
+    UnityAction updateMovementVector;
+    Vector2 movement;
     
     [SerializeField]
     float maxHealth;
@@ -29,6 +33,20 @@ public class CharacterController : Entity
     bool pausePressed = false;
     Rigidbody2D rb;
     public static CharacterController instance;
+    
+    public void autoMove(float time)
+    {
+        StartCoroutine(disableInput(time));
+    }
+
+    private IEnumerator disableInput(float time)
+    {
+        Debug.Log("Input Dis");
+        updateMovementVector -= checkMoveInput;
+        movement = movement.normalized;
+        yield return new WaitForSeconds(time);
+        updateMovementVector += checkMoveInput;
+    }
 
 
     // Start is called before the first frame update
@@ -39,13 +57,20 @@ public class CharacterController : Entity
         healthbar.SetMaxHealt(maxHealth);
         rb = GetComponent<Rigidbody2D>();
         gameMaster = GameMasterScript.instance;
+        updateMovementVector += checkMoveInput;
+    }
+
+    void checkMoveInput()
+    {
+        float hControl = Input.GetAxis("Horizontal");
+        float vControl = Input.GetAxis("Vertical");
+        movement = new Vector2(hControl, vControl);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float hControl = Input.GetAxis("Horizontal");
-        float vControl = Input.GetAxis("Vertical");
+        updateMovementVector?.Invoke();
         Vector3 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
 
@@ -59,7 +84,7 @@ public class CharacterController : Entity
             pausePressed = false;
         }
 
-        rb.position += new Vector2(hControl, vControl) * Time.deltaTime * speed;
+        rb.position += movement * Time.deltaTime * speed;
         firingPoint.rotation = angle;
         firingPoint.position = rb.position;
 

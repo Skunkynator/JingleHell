@@ -55,20 +55,23 @@ public class Room : MonoBehaviour
     }
     public void onEnter()
     {
+        if(!enemies.activeInHierarchy)
+            CharacterController.instance.autoMove(0.25f);
         enemies.SetActive(true);
-        if(enemies.transform.childCount != 0)
-            StartCoroutine(closeDoors());
+        StartCoroutine(checkForDoors());
         current = this;
     }
     public void checkEnemies()
     {
-        if(enemies.transform.childCount == 0)
-            doors.SetActive(false);
+        StartCoroutine(checkForDoors());
     }
 
-    private IEnumerator closeDoors()
+    private IEnumerator checkForDoors()
     {
-        yield return new WaitForSeconds(0.5f);
-        doors.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        if(enemies.transform.childCount == 0)
+            doors.SetActive(false);
+        else
+            doors.SetActive(true);
     }
 }
