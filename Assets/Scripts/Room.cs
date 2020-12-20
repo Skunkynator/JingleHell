@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    static private Room current;
+    static public Room Current => current;
     [SerializeField]
     Room left;
     [SerializeField]
@@ -24,13 +26,16 @@ public class Room : MonoBehaviour
     Transform cameraPosition;
     [SerializeField]
     GameObject enemies;
+    [SerializeField]
+    GameObject doors;
 
     public Transform CameraPosition => cameraPosition;
 
     void Awake()
-	{
+    {
+        doors.SetActive(false);
         enemies.SetActive(false);
-	}
+    }
 
     void Start()
     {
@@ -51,5 +56,19 @@ public class Room : MonoBehaviour
     public void onEnter()
     {
         enemies.SetActive(true);
+        if(enemies.transform.childCount != 0)
+            StartCoroutine(closeDoors());
+        current = this;
+    }
+    public void checkEnemies()
+    {
+        if(enemies.transform.childCount == 0)
+            doors.SetActive(false);
+    }
+
+    private IEnumerator closeDoors()
+    {
+        yield return new WaitForSeconds(0.5f);
+        doors.SetActive(true);
     }
 }
