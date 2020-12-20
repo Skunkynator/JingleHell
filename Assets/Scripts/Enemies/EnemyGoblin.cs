@@ -102,7 +102,5 @@ public class EnemyGoblin : Enemy
             Vector2 normal = collision.GetContact(0).normal;
             moveDir = Vector2.Reflect(moveDir,normal) - moveDir * normal * 0.2f;
         }
-
-        
     }
 }

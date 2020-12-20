@@ -135,7 +135,8 @@ public class CharacterController : Entity
                     break;
             }
 
-            Debug.Log(collsion.contacts.ToString());
+            health = maxHealth;
+            healthbar.SetHealth(health);
             Destroy(collsion.collider.gameObject);
         }
     }
