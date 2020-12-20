@@ -22,7 +22,7 @@ public class GoblinMiniboss : MiniBoss
     private Vector2 moveDir = Vector2.zero;
 
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");

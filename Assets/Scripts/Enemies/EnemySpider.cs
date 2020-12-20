@@ -20,7 +20,7 @@ public class EnemySpider : Enemy
     Rigidbody2D rb;
     GameObject player;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");

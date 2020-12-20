@@ -22,7 +22,7 @@ public class SpiderMiniBoss : MiniBoss
     Rigidbody2D rb;
     GameObject player;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
