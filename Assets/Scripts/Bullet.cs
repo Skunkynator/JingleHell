@@ -1,39 +1,30 @@
 ﻿using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
 	[SerializeField]
-	float Damage = 25;
-
+	internal float Damage = 25;
 	[SerializeField]
-	string tagShooter;
-
+	internal string tagShooter;
 	[SerializeField]
-	float speed = 4;
-
+	internal float speed = 4;
 	[SerializeField]
-	Rigidbody2D rbBullet;
+	internal Rigidbody2D rbBullet;
 
-	bool initialised = false;
+	internal Vector2 direction;
+	internal bool initialised = false;
 
-	Vector2 direction;
-
-	
-
-	// Start is called before the first frame update
-	void Start()
+	internal void Start()
 	{
 		rbBullet = GetComponent<Rigidbody2D>();
 	}
 
-	// Update is called once per frame
-	void Update()
+	internal void Update()
 	{
 		if (!initialised) return;
 		transform.position += (Vector3)direction * Time.deltaTime * speed;
 	}
 
-	public void init(Vector2 direction, Vector2 position, float rotation)
+	internal void Init(Vector2 direction, Vector2 position, float rotation)
 	{
 		if (initialised) return;
 		initialised = !initialised;
@@ -42,7 +33,7 @@ public class Bullet : MonoBehaviour
 		transform.position = position;
 	}
 
-	public void OnCollisionEnter2D(Collision2D collision)
+	protected void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.collider.tag != tagShooter)
 		{

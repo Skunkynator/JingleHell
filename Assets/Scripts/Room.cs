@@ -1,77 +1,79 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    static private Room current;
-    static public Room Current => current;
-    [SerializeField]
-    Room left;
-    [SerializeField]
-    Room right;
-    [SerializeField]
-    Room top;
-    [SerializeField]
-    Room down;
-    [SerializeField]
-    RoomTrigger triggerLeft;
-    [SerializeField]
-    RoomTrigger triggerRight;
-    [SerializeField]
-    RoomTrigger triggerTop;
-    [SerializeField]
-    RoomTrigger triggerDown;
-    [SerializeField]
-    Transform cameraPosition;
-    [SerializeField]
-    GameObject enemies;
-    [SerializeField]
-    GameObject doors;
+	static private Room current;
+	static public Room Current => current;
 
-    public Transform CameraPosition => cameraPosition;
+	[SerializeField]
+	internal Room left;
+	[SerializeField]
+	internal Room right;
+	[SerializeField]
+	internal Room top;
+	[SerializeField]
+	internal Room down;
+	[SerializeField]
+	internal RoomTrigger triggerLeft;
+	[SerializeField]
+	internal RoomTrigger triggerRight;
+	[SerializeField]
+	internal RoomTrigger triggerTop;
+	[SerializeField]
+	internal RoomTrigger triggerDown;
+	[SerializeField]
+	internal Transform cameraPosition;
+	[SerializeField]
+	internal GameObject enemies;
+	[SerializeField]
+	internal GameObject doors;
 
-    void Awake()
-    {
-        doors.SetActive(false);
-        enemies.SetActive(false);
-    }
+	public Transform CameraPosition => cameraPosition;
 
-    void Start()
-    {
-        triggerLeft?.setRoom(left);
-        triggerTop?.setRoom(top);
-        triggerDown?.setRoom(down);
-        triggerRight?.setRoom(right);
-        triggerLeft.OnEnter += onExit;
-        triggerTop.OnEnter += onExit;
-        triggerDown.OnEnter += onExit;
-        triggerRight.OnEnter += onExit;
-    }
+	private void Awake()
+	{
+		doors.SetActive(false);
+		enemies.SetActive(false);
+	}
 
-    void onExit()
-    {
-        enemies.SetActive(false);
-    }
-    public void onEnter()
-    {
-        if(!enemies.activeInHierarchy)
-            CharacterController.instance.autoMove(0.25f);
-        enemies.SetActive(true);
-        StartCoroutine(checkForDoors());
-        current = this;
-    }
-    public void checkEnemies()
-    {
-        StartCoroutine(checkForDoors());
-    }
+	private void Start()
+	{
+		triggerLeft?.setRoom(left);
+		triggerTop?.setRoom(top);
+		triggerDown?.setRoom(down);
+		triggerRight?.setRoom(right);
+		triggerLeft.OnEnter += OnExit;
+		triggerTop.OnEnter += OnExit;
+		triggerDown.OnEnter += OnExit;
+		triggerRight.OnEnter += OnExit;
+	}
 
-    private IEnumerator checkForDoors()
-    {
-        yield return new WaitForSeconds(0.25f);
-        if(enemies.transform.childCount == 0)
-            doors.SetActive(false);
-        else
-            doors.SetActive(true);
-    }
+	internal void OnExit()
+	{
+		enemies.SetActive(false);
+	}
+
+	internal void OnEnter()
+	{
+		if (!enemies.activeInHierarchy)
+			PlayerController.instance.AutoMove(0.25f);
+		enemies.SetActive(true);
+		StartCoroutine(CheckForDoors());
+		current = this;
+	}
+
+	internal void CheckEnemies()
+	{
+		StartCoroutine(CheckForDoors());
+	}
+
+	private IEnumerator CheckForDoors()
+	{
+		yield return new WaitForSeconds(0.25f);
+		if (enemies.transform.childCount == 0)
+			doors.SetActive(false);
+		else
+			doors.SetActive(true);
+	}
 }

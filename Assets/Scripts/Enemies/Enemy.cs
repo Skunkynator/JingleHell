@@ -3,22 +3,20 @@
 public class Enemy : Entity
 {
 	[SerializeField]
-	GameObject healthpickup;
-
+	internal GameObject healthpickup;
 	[SerializeField]
-	float touchDamage;
-
+	internal float touchDamage;
 	[SerializeField]
 	internal float touchDamageCooldownDefault = 1;
 
-	internal float touchDamageCooldown;
+	private float touchDamageCooldown;
 
 	protected virtual void OnCollisionStay2D(Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Player" && touchDamageCooldown <= 0)
 		{
 			print("e");
-			CharacterController.instance.TakeDamage(touchDamage);
+			PlayerController.instance.TakeDamage(touchDamage);
 			touchDamageCooldown = touchDamageCooldownDefault;
 		}
 		else
@@ -35,13 +33,13 @@ public class Enemy : Entity
 		}
 	}
 
-	protected override void Die()
+	internal override void Die()
 	{
 		Destroy(gameObject);
 		if (healthpickup &&
-			CharacterController.instance.health <= CharacterController.instance.maxHealth * 0.5 &&
+			PlayerController.instance.health <= PlayerController.instance.maxHealth * 0.5 &&
 			GameObject.FindGameObjectsWithTag("Healthpickup").Length < 2)
 			Instantiate(healthpickup, this.transform.position, Quaternion.identity);
-		Room.Current.checkEnemies();
+		Room.Current.CheckEnemies();
 	}
 }

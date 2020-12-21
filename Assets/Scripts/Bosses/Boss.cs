@@ -32,7 +32,7 @@ public class Boss : Enemy
 	IEnumerator currentAttack;
 	IEnumerator attackControl;
 
-	void Start()
+	private void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -40,20 +40,20 @@ public class Boss : Enemy
 		health = maxHealth;
 	}
 
-	void OnEnable()
+	private void OnEnable()
 	{
-		print(CharacterController.instance);
-		if (CharacterController.instance)
+		print(PlayerController.instance);
+		if (PlayerController.instance)
 		{
-			if (CharacterController.instance.spiderGemCollected)
+			if (PlayerController.instance.spiderGemCollected)
 			{
 				moveSpeed *= 0.75f;
 			}
-			if (CharacterController.instance.goblinGemCollected)
+			if (PlayerController.instance.goblinGemCollected)
 			{
 				attackSpeed *= 1.25f;
 			}
-			if (CharacterController.instance.gostGemCollected)
+			if (PlayerController.instance.gostGemCollected)
 			{
 				maxHealth *= 0.8f;
 				health = maxHealth;
@@ -61,14 +61,13 @@ public class Boss : Enemy
 		}
 	}
 
-	// Update is called once per frame
-	void Update()
+	private void Update()
 	{
 		if (health > maxHealth * 0.67)
 		{
 			if (attackSpeed <= 0)
 			{
-				Phase1Attack();
+				MultibulletAttack();
 				attackSpeed = attackSpeedDefault;
 			}
 			if (moveWhait <= 0)
@@ -88,7 +87,7 @@ public class Boss : Enemy
 				bulletAmount = 4;
 				spreadAngle = 20;
 
-				attackControl = attack();
+				attackControl = BeamAttack();
 				StartCoroutine(attackControl);
 				phase2started = false;
 			}
@@ -117,7 +116,7 @@ public class Boss : Enemy
 				startAngle = -22.5f;
 				endAngle = 22.5f;
 
-				Phase1Attack();
+				MultibulletAttack();
 				attackSpeed = attackSpeedDefault;
 			}
 			MoveToPlayer();
@@ -125,24 +124,24 @@ public class Boss : Enemy
 		attackSpeed -= Time.deltaTime;
 	}
 
-	void SetMovement()
+	internal void SetMovement()
 	{
 		moveDir = new Vector2(Random.Range(-1f, 1f), 0f);
 		moveDir.Normalize();
 	}
 
-	void Move()
+	internal void Move()
 	{
 		rb.position += moveDir * Time.deltaTime * moveSpeed;
 	}
 
-	void MoveToPlayer()
+	internal void MoveToPlayer()
 	{
 		moveDir = player.transform.position - transform.position;
 		rb.position += moveDir.normalized * Time.deltaTime * moveSpeed;
 	}
 
-	void Phase1Attack()
+	internal void MultibulletAttack()
 	{
 		float angleStep = (endAngle - startAngle) / bulletAmount;
 
@@ -151,15 +150,15 @@ public class Boss : Enemy
 		for (int i = (bulletAmount / 2) * -1; i <= (bulletAmount / 2); i++)
 		{
 			Vector2 bulletDirection = Quaternion.Euler(0, 0, angleStep * i) * toPlayer;
-			Instantiate(bullet).init(bulletDirection, this.transform.position, Mathf.Atan2(bulletDirection.y, bulletDirection.x) * Mathf.Rad2Deg);
+			Instantiate(bullet).Init(bulletDirection, this.transform.position, Mathf.Atan2(bulletDirection.y, bulletDirection.x) * Mathf.Rad2Deg);
 
 		}
 	}
-	IEnumerator attack()
+	private IEnumerator BeamAttack()
 	{
 		while (true)
 		{
-			currentAttack = BulletPatterns.timedSpread(bullet, bulletAmount, spreadAngle, transform, 0.5f, timeOffset);
+			currentAttack = BulletPatterns.TimedSpread(bullet, bulletAmount, spreadAngle, transform, 0.5f, timeOffset);
 			StartCoroutine(currentAttack);
 			yield return new WaitForSeconds(timeOffset * (bulletAmount * 2 - 1));
 		}

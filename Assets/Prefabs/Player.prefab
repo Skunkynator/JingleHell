@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4823834718577689102}
   - component: {fileID: 329800285129307347}
   m_Layer: 12
-  m_Name: Character
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,14 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 100
   speed: 4
-  charBullet: {fileID: 4823603039672126357, guid: 85076255ea1a35e4999c96d120e28993,
-    type: 3}
-  cooldownDefault: 0.2
+  bullet: {fileID: 4823603039672126357, guid: 85076255ea1a35e4999c96d120e28993, type: 3}
   firingPoint: {fileID: 4460207622042113485}
   healthbar: {fileID: 0}
-  gameMaster: {fileID: 0}
-  maxHealth: 100
+  cooldownDefault: 0.2
 --- !u!70 &329800285129307347
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

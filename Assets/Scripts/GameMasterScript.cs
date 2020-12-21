@@ -3,58 +3,49 @@ using UnityEngine.SceneManagement;
 
 public class GameMasterScript : MonoBehaviour
 {
-	public static GameMasterScript instance;
+	public static GameMasterScript instance { get; private set; }
 
 	[SerializeField]
-	GameObject player;
+	internal GameObject player;
 	[SerializeField]
-	CharacterController playerCharacterController;
+	internal PlayerController playerCharacterController;
 	[SerializeField]
-	GameObject currentRoom;
+	internal GameObject currentRoom;
 	[SerializeField]
-	GameObject gameOverUI;
+	internal GameObject gameOverUI;
 	[SerializeField]
-	GameObject pauseMenuUI;
+	internal GameObject pauseMenuUI;
 
 	internal bool paused = false;
 
-	void Awake()
+	private void Awake()
 	{
 		instance = this;
-		//gameOverUI = GameObject.FindGameObjectWithTag("GameOverUI");
 		Time.timeScale = 1;
 	}
 
-	public void GameOver()
+	internal void GameOver()
 	{
-		Debug.Log("Game Over");
-		if(gameOverUI != null)
-		{
-			gameOverUI.SetActive(true);
-		}
-		else
-		{
-			print("NO");
-		}
+		gameOverUI.SetActive(true);
 		Time.timeScale = 0;
 	}
-	
-	public void ReloadCurrentLevel()
+
+	internal void ReloadCurrentLevel()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	public void LoadLevel(int buildIndex)
+	internal void LoadLevel(int buildIndex)
 	{
 		SceneManager.LoadScene(buildIndex);
 	}
 
-	public void LoadMainMenu()
+	internal void LoadMainMenu()
 	{
 		SceneManager.LoadScene("MainMenu");
 	}
 
-	public void TogglePauseMenu()
+	internal void TogglePauseMenu()
 	{
 		if (!paused)
 		{
@@ -62,21 +53,22 @@ public class GameMasterScript : MonoBehaviour
 			pauseMenuUI.SetActive(true);
 			paused = true;
 		}
-		else {
+		else
+		{
 			pauseMenuUI.SetActive(false);
 			Time.timeScale = 1;
 			paused = false;
 		}
 	}
 
-	public void ClosePauseMenu()
+	internal void ClosePauseMenu()
 	{
 		pauseMenuUI.SetActive(false);
 		Time.timeScale = 1;
 		paused = false;
 	}
 
-	public void QuitGame()
+	internal void QuitGame()
 	{
 		Application.Quit();
 	}

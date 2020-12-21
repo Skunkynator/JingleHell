@@ -1,69 +1,64 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpiderMiniBoss : MiniBoss
 {
-    // Start is called before the first frame update
+	[SerializeField]
+	internal float attackSpeed = 2;
+	[SerializeField]
+	internal float moveSpeed = 1.5f;
+	[SerializeField]
+	internal int bulletAmound = 10;
+	[SerializeField]
+	internal float startAngle = -90, endAngle = 90;
+	[SerializeField]
+	internal Bullet bullet;
 
-    [SerializeField]
-    float attackSpeed = 2;
-    [SerializeField]
-    float moveSpeed = 1.5f;
-    [SerializeField]
-    int bulletAmound = 10;
-    [SerializeField]
-    float startAngle = -90, endAngle = 90;
-    [SerializeField]
-    Bullet bullet;
+	internal float moveWhait;
+	internal Vector2 moveDir;
+	internal Rigidbody2D rb;
+	internal GameObject player;
 
-    float moveWhait;
-    Vector2 moveDir;
-    Rigidbody2D rb;
-    GameObject player;
+	private void Start()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		player = GameObject.FindGameObjectWithTag("Player");
+		InvokeRepeating("Shoot", 0f, attackSpeed);
+	}
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("Shoot", 0f, attackSpeed);
-    }
+	private void Update()
+	{
+		if (moveWhait <= 0)
+		{
+			Move();
+			moveWhait = Random.Range(1f, 3f);
+		}
+		moveWhait -= Time.deltaTime;
+		rb.position += moveDir * Time.deltaTime * moveSpeed;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (moveWhait <= 0)
-        {
-            Move();
-            moveWhait = Random.Range(1f, 3f);
-        }
-        moveWhait -= Time.deltaTime;
-        rb.position += moveDir * Time.deltaTime * moveSpeed;
-    }
-    protected override void OnCollisionStay2D(Collision2D collision)
-    {
-        base.OnCollisionStay2D(collision);
-        Move();
-    }
+	internal void Move()
+	{
+		moveDir = new Vector2(Random.Range(-1f, 1f), 0f);
+		moveDir.Normalize();
+	}
 
-    void Shoot()
-    {
-        float angleStep = (endAngle - startAngle) / bulletAmound;
+	internal void Shoot()
+	{
+		float angleStep = (endAngle - startAngle) / bulletAmound;
 
-        Vector2 toPlayer = player.transform.position - this.transform.position;
+		Vector2 toPlayer = player.transform.position - this.transform.position;
 
-        for (int i = (bulletAmound / 2) * -1; i <= (bulletAmound / 2); i++)
-        {
-            Vector2 bulletDirection = Quaternion.Euler(0, 0, angleStep * i) * toPlayer;
-            Instantiate(bullet).init(bulletDirection, this.transform.position, Random.value * 180f);
+		for (int i = (bulletAmound / 2) * -1; i <= (bulletAmound / 2); i++)
+		{
+			Vector2 bulletDirection = Quaternion.Euler(0, 0, angleStep * i) * toPlayer;
+			Instantiate(bullet).Init(bulletDirection, this.transform.position, Random.value * 180f);
 
-        }
-    }
+		}
+	}
 
-    void Move()
-    {
-        moveDir = new Vector2(Random.Range(-1f, 1f), 0f);
-        moveDir.Normalize();
-    }
-
+	protected override void OnCollisionStay2D(Collision2D collision)
+	{
+		base.OnCollisionStay2D(collision);
+		Move();
+	}
 }

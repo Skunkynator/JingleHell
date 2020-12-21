@@ -5,14 +5,13 @@ using UnityEngine;
 public class Healthpickup : MonoBehaviour
 {
     [SerializeField]
-    public float restoreHealth;
+    internal float restoreHealth;
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.gameObject.tag == "Player")
         {
-            CharacterController.instance.PickUpHealthpack(this.gameObject);
+            PlayerController.instance.PickUpHealthpack(this.gameObject);
         }
     }
 }
